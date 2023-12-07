@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="static/favicon.ico.png">
+        <link rel="stylesheet" href="styles.css">
+
+        <title>Projeto Predição de doenças coronárias - MVP Machine Learning - PUC-Rio</title>
+    </head>
+
+    <body>
+        <header>
+            <div class="title">
+                <h1>Sistema preditor de doenças coronárias</h1>
+            </div>
+            <div class="banner">
+                <img src="img/hospital-1-1500x600.jpg"
+                    alt="y">
+            </div>
+        </header>
+        <div class="insertInputs">
+            <h2>Favor inserir os dados do paciente:</h2>
+            <section class="newItem">
+                <input type="text" id="gender" placeholder="Gênero: M ou F">
+                <input type="text" id="age" placeholder="Idade">
+                <input type="text" id="education" placeholder="Educação: 1 a 4">
+                <input type="text" id="smoker" placeholder="Fumante: S ou N">
+                <input type="text" id="cigarsDay" placeholder="Cigarros por dia">
+                <input type="text" id="medPres" placeholder="Remédio pressão: S ou N">
+                <input type="text" id="prevalentStroke" placeholder="Já enfartou: S ou N">
+                <input type="text" id="prevalentHyp" placeholder="Hipertensão: S ou N">
+                <input type="text" id="diabetes" placeholder="Diabetes: S ou N">
+                <input type="text" id="cholesterol" placeholder="Colesterol">
+                <input type="text" id="sysBP" placeholder="Sístole">
+                <input type="text" id="diaBP" placeholder="Diástole">
+                <input type="text" id="bmi" placeholder="IMC">
+                <input type="text" id="heartRate" placeholder="Batimentos">
+                <input type="text" id="glucose" placeholder="Glicose">
+            </section>
+            <div class="newPredictionBtnContainer">
+                <span onclick="newItem()" class="addBtn">Calcular</span>
+            </div>
+        </div>
+
+        <section class="items responsive">
+            <table id="myTable">
+                <tr>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                    <th><img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px"></th>
+                </tr>
+            </table>
+        </section>
+        <script src="scripts.js"></script>
+    </body>
+</html>
