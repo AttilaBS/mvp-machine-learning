@@ -1,4 +1,5 @@
-from schemas.prediction import PredictionSchema, PredictionSearchSchema, \
-                            PredictionViewSchema, ListingPredictionsSchema, \
-                            PredictionDelSchema, show_predictions, show_prediction
+from schemas.prediction import PredictionSchema, PredictionViewSchema, \
+                            PredictionSearchSchema, PredictionNameSearchSchema, \
+                            ListingPredictionsSchema, PredictionDelSchema, \
+                                show_predictions, show_prediction
 from schemas.error import ErrorSchema

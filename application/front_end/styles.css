@@ -150,7 +150,7 @@ header {
 table,
 th,
 td {
-    border: 1px solid black;
+    border: 1px solid #22df91;
     border-collapse: collapse;
     cursor: pointer;
     position: relative;

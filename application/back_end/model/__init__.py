@@ -6,6 +6,7 @@ import os
 # importando os elementos definidos no modelo
 from model.base import Base
 from model.prediction import Prediction
+from model.trained_model import TrainedModel
 
 
 db_path = 'database/'
