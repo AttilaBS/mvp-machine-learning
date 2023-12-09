@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import List
 from model.prediction import Prediction
+from datetime import datetime
 
 class PredictionSchema(BaseModel):
     '''
@@ -22,12 +23,13 @@ class PredictionSchema(BaseModel):
     bmi: float = 26.45
     heart_rate: float = 80.0
     glucose: float = 79.0
+    ten_year_chd: int = 1
 
 class ListingPredictionsSchema(BaseModel):
     '''
         Define como uma listagem de predições será retornada.
     '''
-    get_Predictions: List[PredictionSchema]
+    predictions: List[PredictionSchema]
 
 def show_predictions(predictions: List[Prediction]):
     '''
@@ -56,7 +58,7 @@ def show_predictions(predictions: List[Prediction]):
             'date_insertion': prediction.date_insertion,
             'ten_year_chd': prediction.ten_year_chd,
         })
-    return {'Predictions': result}
+    return {'predictions': result}
 
 class PredictionDelSchema(BaseModel):
     '''Define como os dados de uma predição para deleção serão representados
@@ -71,32 +73,32 @@ class PredictionNameSearchSchema(BaseModel):
 
 class PredictionSearchSchema(BaseModel):
     '''
-        Define como será a busca de uma predição pelo id.
+        Define como será a busca de uma predição pelo nome.
     '''
-    id: int = 1
+    name: str = 'João'
 
 class PredictionViewSchema(BaseModel):
     '''
         Define como será a visualização de uma predição.
     '''
-    id: int = 1
-    name: str = 'Ronaldo'
-    male: int = 1
-    age: int = 23
-    education: float = 2.0
-    current_smoker: int = 0
-    cigs_per_day: float = 0.0
-    bp_meds: float = 3.0
-    prevalent_stroke: int = 1
-    prevalent_hyp: int = 0
-    diabetes: int = 1
-    tot_chol: float = 245.0
-    sys_bp: float = 126.5
-    dia_bp: float = 70.0
-    bmi: float = 22.91
-    heart_rate: float = 75.0
-    glucose: float = 57.0
-    ten_year_chd: int = None
+    name: str
+    male: int
+    age: int
+    education: float
+    current_smoker: int
+    cigs_per_day: float
+    bp_meds: float
+    prevalent_stroke: int
+    prevalent_hyp: int
+    diabetes: int
+    tot_chol: float
+    sys_bp: float
+    dia_bp: float 
+    bmi: float
+    heart_rate: float
+    glucose: float
+    date_insertion: datetime
+    ten_year_chd: int
 
 class PredictionDelSchema(BaseModel):
     '''

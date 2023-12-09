@@ -14,36 +14,38 @@
         <header>
             <div class="title">
                 <h1>Sistema preditor de doenças coronárias</h1>
+                <h4 class="obs">Risco de o paciente adquirir doenças coronárias no prazo de 10 anos.</h3>
             </div>
             <div class="banner"><img></div>
         </header>
         <div class="insertInputs">
             <h2>Favor inserir os dados do paciente:</h2>
             <section class="newItem">
-                <input type="text" id="gender" placeholder="Gênero: M ou F">
-                <input type="text" id="age" placeholder="Idade">
-                <input type="text" id="education" placeholder="Educação: 1 a 4">
-                <input type="text" id="smoker" placeholder="Fumante: S ou N">
-                <input type="text" id="cigarsDay" placeholder="Cigarros por dia">
-                <input type="text" id="medPres" placeholder="Remédio pressão: S ou N">
-                <input type="text" id="prevalentStroke" placeholder="Já enfartou: S ou N">
-                <input type="text" id="prevalentHyp" placeholder="Hipertensão: S ou N">
-                <input type="text" id="diabetes" placeholder="Diabetes: S ou N">
-                <input type="text" id="cholesterol" placeholder="Colesterol">
-                <input type="text" id="sysBP" placeholder="Sístole">
-                <input type="text" id="diaBP" placeholder="Diástole">
-                <input type="text" id="bmi" placeholder="IMC">
-                <input type="text" id="heartRate" placeholder="Batimentos">
-                <input type="text" id="glucose" placeholder="Glicose">
+                <input type="text" minlength="3" maxlength="50" id="patientName" placeholder="Nome do paciente" required>
+                <input type="text" minlength="1" maxlength="1" id="gender" placeholder="Gênero: M ou F" required>
+                <input type="number" step="1" min="18" max="100" id="age" placeholder="Idade" required>
+                <input type="number" step="any" min="1.0" max="4.0" id="education" placeholder="Educação: 1 a 4" default="0">
+                <input type="text" minlength="1" maxlength="1" id="smoker" placeholder="Fumante: S ou N" required>
+                <input type="number" step="1" min="1" max="99" id="cigarsDay" placeholder="Cigarros por dia" required>
+                <input type="text" minlength="1" maxlength="1" id="medPres" placeholder="Remédio pressão: S ou N" required>
+                <input type="text" minlength="1" maxlength="1" id="prevalentStroke" placeholder="Já enfartou: S ou N" required>
+                <input type="text" minlength="1" maxlength="1" id="prevalentHyp" placeholder="Hipertensão: S ou N" required>
+                <input type="text" minlength="1" maxlength="1" id="diabetes" placeholder="Diabetes: S ou N" required>
+                <input type="number" step="any" min="1.0" max="500.99" id="cholesterol" placeholder="Colesterol" required>
+                <input type="number" step="any" min="1.0" max="999.9" id="sysBP" placeholder="Sístole" required>
+                <input type="number" step="any" min="1" max="999.9" id="diaBP" placeholder="Diástole" required>
+                <input type="number" step="any" min="10.0" max="99.9" id="bmi" placeholder="IMC" required>
+                <input type="number" step="any" min="1.0" max="999.9" id="heartRate" placeholder="Batimentos" required>
+                <input type="number" step="any" min="1.0" max="999.9" id="glucose" placeholder="Glicose" required>
             </section>
             <div class="newPredictionBtnContainer">
                 <span onclick="newItem()" class="addBtn">Calcular</span>
             </div>
         </div>
-
         <section class="items responsive">
             <table id="myTable">
                 <tr>
+                    <th>Nome</th>
                     <th>Gênero</th>
                     <th>Idade</th>
                     <th>Educação</th>
@@ -64,6 +66,10 @@
                 </tr>
             </table>
         </section>
+        <footer>
+            <span>Sistema Preditor de doenças coronárias © 2023 </span>
+            <p>Ícones by <a href="https://icons8.com"> Icons8</a></p>
+        </footer>
         <script src="scripts.js"></script>
     </body>
 </html>

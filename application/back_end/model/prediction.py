@@ -9,7 +9,7 @@ class Prediction(Base):
     __tablename__ = 'predictions'
 
     id = Column('pk_prediction', Integer, primary_key=True)
-    name = Column('name', String(50))
+    name = Column('name', String(50), unique=True)
     name_normalized = Column(String(140))
     male = Column(Integer)
     age = Column(Integer)

@@ -22,7 +22,7 @@
 
 ## Link do Colab:
         Além de o colab notebook com o modelo treinado estar presente neste
-    repositório, ele pode ser acessado diretamente pelo navegador 
+    repositório, ele pode ser acessado diretamente pelo navegador
     através do link:
 
     #######link colab - fazer um último review e ajustes de código##########
@@ -69,8 +69,8 @@
     |__ README.md
 
 ## Como executar
-        Será necessário ter todas as libs(módulos) python listadas no 
-    requirements.txt instaladas. 
+        Será necessário ter todas as libs(módulos) python listadas no
+    requirements.txt instaladas.
     Após clonar o repositório, é necessário ir ao diretório raiz
     (pasta back_end), pelo terminal, para poder executar os comandos
     descritos abaixo.

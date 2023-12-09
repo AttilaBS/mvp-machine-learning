@@ -2,6 +2,7 @@ from flask_openapi3 import OpenAPI, Info, Tag
 from flask import redirect
 from unidecode import unidecode
 from urllib.parse import unquote
+import logging
 
 from sqlalchemy.exc import IntegrityError
 
@@ -32,9 +33,12 @@ def add_prediction(form: PredictionSchema):
         Adiciona uma nova predição à base de dados
         Retorna uma representação das predições.
     '''
+    logger.debug('teste')
     trained_model = TrainedModel
     trained_model_path = 'trained_model/trained_model.pkl'
     model = trained_model.load_trained_model(trained_model_path)
+
+    logger.debug(f'the form: {form}')
 
     prediction = Prediction(
         name = form.name.strip(),
@@ -82,9 +86,11 @@ def get_predictions():
         Faz a busca por todas as predições cadastradas
         Retorna uma representação da listagem de predições.
     '''
+    logging.getLogger('flask_cors').level = logging.DEBUG
     logger.debug(f'Coletando predições ')
     session = Session()
     predictions = session.query(Prediction).all()
+    logger.debug(predictions)
 
     if not predictions:
         return {'predictions': []}, 200
@@ -93,7 +99,7 @@ def get_predictions():
 
         return show_predictions(predictions), 200
 
-@app.get('/prediction', tags = [predictor_tag],
+@app.get('/get_prediction', tags = [predictor_tag],
          responses = {'200': PredictionViewSchema, '404': ErrorSchema})
 def get_prediction(query: PredictionNameSearchSchema):
     '''
@@ -115,25 +121,27 @@ def get_prediction(query: PredictionNameSearchSchema):
 
         return show_prediction(prediction), 200
 
-@app.delete('/prediction', tags = [predictor_tag],
+@app.delete('/del_prediction', tags = [predictor_tag],
             responses = {'200': PredictionDelSchema, '404': ErrorSchema})
 def del_prediction(query: PredictionSearchSchema):
     '''
-        Deleta um predição a partir do id informado.
+        Deleta um predição a partir do nome informado.
+        Em razão de o nome do paciente ser único, a deleção pelo nome
+        funcionará sem conflitos.
         Retorna uma mensagem de confirmação da remoção.
     '''
-    prediction_id = query.id
-    logger.debug(f'Deletando dados sobre predição #{prediction_id}')
+    prediction_name = query.name
+    logger.debug(f'Deletando dados sobre predição #{prediction_name}')
     session = Session()
-    count = session.query(Prediction).filter(Prediction.id == prediction_id).delete()
+    count = session.query(Prediction).filter(Prediction.name == prediction_name).delete()
     session.commit()
 
     if count:
-        logger.debug(f'Deletado predição #{prediction_id}')
+        logger.debug(f'Deletado predição #{prediction_name}')
 
-        return {'mensagem': 'Predição removida', 'id': prediction_id}
+        return {'mensagem': 'Predição removida', 'id': prediction_name}
     else:
         error_msg = 'Predição não encontrada na base :/'
-        logger.warning(f'Erro ao deletar predição #{prediction_id}, {error_msg}')
+        logger.warning(f'Erro ao deletar predição #{prediction_name}, {error_msg}')
 
         return {'mensagem': error_msg}, 404
