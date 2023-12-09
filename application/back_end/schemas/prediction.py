@@ -106,7 +106,7 @@ class PredictionDelSchema(BaseModel):
         requisição de remoção.
     '''
     message: str
-    id: int
+    nome: str
 
 def show_prediction(prediction: Prediction):
     '''

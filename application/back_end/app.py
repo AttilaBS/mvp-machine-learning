@@ -33,7 +33,6 @@ def add_prediction(form: PredictionSchema):
         Adiciona uma nova predição à base de dados
         Retorna uma representação das predições.
     '''
-    logger.debug('teste')
     trained_model = TrainedModel
     trained_model_path = 'trained_model/trained_model.pkl'
     model = trained_model.load_trained_model(trained_model_path)
