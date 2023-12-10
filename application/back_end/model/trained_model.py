@@ -4,13 +4,13 @@ import pickle
 
 class TrainedModel:
 
-    def load_pkl(path):
+    def load_pkl(self, path):
+        '''Carregamos o arquivo, no formato pickle.
         '''
-            Carregamos o arquivo, no formato pickle.
-        '''
+
         return pickle.load(open(path, 'rb'))
 
-    def predictor(trained_model, scaler, form):
+    def predictor(self, trained_model, scaler, form):
         '''Realiza a predição de um paciente com base no modelo treinado
         '''
         X_input = np.array([[form.male,
