@@ -1,4 +1,4 @@
-,sexo_masculino,idade,educação,fumante,cigarros_dia,medicamento_pressão,enfartou,hipertensão,diabetes,nível_colesterol,sístole,diástole,IMC,batimentos,glicose,risco
+,male,age,education,current_smoker,cigs_per_day,bp_meds,prevalent_stroke,prevalent_hyp,diabetes,tot_chol,sys_bp,dia_bp,bmi,heart_rate,glucose,ten_year_chd
 3551,0,43,4.0,1,30.0,0.0,0,0,0,235.0,128.5,80.0,18.83,90.0,70.0,0
 3552,1,46,1.0,1,30.0,0.0,0,0,1,217.0,115.0,72.0,21.34,90.0,73.0,0
 3553,0,68,3.0,0,0.0,0.0,0,1,0,241.0,154.0,96.0,30.12,103.0,70.0,0

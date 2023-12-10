@@ -2,7 +2,6 @@ from flask_openapi3 import OpenAPI, Info, Tag
 from flask import redirect
 from unidecode import unidecode
 from urllib.parse import unquote
-import logging
 
 from sqlalchemy.exc import IntegrityError
 
@@ -36,8 +35,6 @@ def add_prediction(form: PredictionSchema):
     trained_model = TrainedModel
     trained_model_path = 'trained_model/trained_model.pkl'
     model = trained_model.load_trained_model(trained_model_path)
-
-    logger.debug(f'the form: {form}')
 
     prediction = Prediction(
         name = form.name.strip(),
@@ -85,16 +82,14 @@ def get_predictions():
         Faz a busca por todas as predições cadastradas
         Retorna uma representação da listagem de predições.
     '''
-    logging.getLogger('flask_cors').level = logging.DEBUG
     logger.debug(f'Coletando predições ')
     session = Session()
     predictions = session.query(Prediction).all()
-    logger.debug(predictions)
 
     if not predictions:
         return {'predictions': []}, 200
     else:
-        logger.debug(f'%d predições econtradas' % len(predictions))
+        logger.debug(f'%d predições encontradas' % len(predictions))
 
         return show_predictions(predictions), 200
 
@@ -116,7 +111,7 @@ def get_prediction(query: PredictionNameSearchSchema):
         logger.warning(f'Erro ao buscar predição {prediction_name}, {error_msg}')
         return {'mensagem': error_msg}, 404
     else:
-        logger.debug(f'predição econtrada: {prediction.name}')
+        logger.debug(f'predição encontrada: {prediction.name}')
 
         return show_prediction(prediction), 200
 
