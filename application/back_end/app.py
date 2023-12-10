@@ -34,7 +34,9 @@ def add_prediction(form: PredictionSchema):
     '''
     trained_model = TrainedModel
     trained_model_path = 'trained_model/trained_model.pkl'
-    model = trained_model.load_trained_model(trained_model_path)
+    scaler_path = 'trained_model/scaler.pkl'
+    model = trained_model.load_pkl(trained_model_path)
+    scaler = trained_model.load_pkl(scaler_path)
 
     prediction = Prediction(
         name = form.name.strip(),
@@ -53,7 +55,7 @@ def add_prediction(form: PredictionSchema):
         bmi = form.bmi,
         heart_rate = form.heart_rate,
         glucose = form.glucose,
-        ten_year_chd = trained_model.predictor(model, form)
+        ten_year_chd = trained_model.predictor(model, scaler, form)
     )
     logger.debug(f'Adicionando predição de nome: {prediction.name}')
     try:
