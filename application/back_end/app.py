@@ -1,14 +1,13 @@
 from flask_openapi3 import OpenAPI, Info, Tag
 from flask import redirect
 from unidecode import unidecode
-from urllib.parse import unquote
 
 from sqlalchemy.exc import IntegrityError
 
+from flask_cors import CORS
 from model import Session, Prediction, TrainedModel
 from logger import logger
 from schemas import *
-from flask_cors import CORS
 
 info = Info(title = 'Sistema Preditor de Doenças Cardíacas', version = '1.0.0')
 app = OpenAPI(__name__, info = info)
@@ -66,15 +65,15 @@ def add_prediction(form: PredictionSchema):
 
         return show_prediction(prediction), 200
 
-    except IntegrityError as e:
+    except IntegrityError as error_1:
         # como a duplicidade do nome é a provável razão do IntegrityError
         error_msg = 'predição de mesmo nome já salvo na base :/'
-        logger.warning(f'Erro ao adicionar predição {prediction.name}, {error_msg}')
+        logger.warning(f'Erro ao adicionar predição {prediction.name}, com erro: {error_1}')
         return {'mensagem': error_msg}, 409
 
-    except Exception as e:
+    except Exception as error_2:
         error_msg = 'Não foi possível salvar novo item :/'
-        logger.warning(f'Erro ao adicionar predição {prediction.name}, {error_msg}')
+        logger.warning(f'Erro ao adicionar predição {prediction.name}, {error_2}')
         return {'mensagem': error_msg}, 400
 
 @app.get('/get_predictions', tags = [predictor_tag],
@@ -90,10 +89,10 @@ def get_predictions():
 
     if not predictions:
         return {'predictions': []}, 200
-    else:
-        logger.debug(f'%d predições encontradas' % len(predictions))
 
-        return show_predictions(predictions), 200
+    logger.debug(f'%d predições encontradas' % len(predictions))
+
+    return show_predictions(predictions), 200
 
 @app.get('/get_prediction', tags = [predictor_tag],
          responses = {'200': PredictionViewSchema, '404': ErrorSchema})
@@ -112,10 +111,10 @@ def get_prediction(query: PredictionNameSearchSchema):
         error_msg = 'predição não encontrada na base :/'
         logger.warning(f'Erro ao buscar predição {prediction_name}, {error_msg}')
         return {'mensagem': error_msg}, 404
-    else:
-        logger.debug(f'predição encontrada: {prediction.name}')
 
-        return show_prediction(prediction), 200
+    logger.debug(f'predição encontrada: {prediction.name}')
+
+    return show_prediction(prediction), 200
 
 @app.delete('/del_prediction', tags = [predictor_tag],
             responses = {'200': PredictionDelSchema, '404': ErrorSchema})
@@ -136,8 +135,7 @@ def del_prediction(query: PredictionSearchSchema):
         logger.debug(f'Deletado predição #{prediction_name}')
 
         return {'mensagem': 'Predição removida', 'id': prediction_name}
-    else:
-        error_msg = 'Predição não encontrada na base :/'
-        logger.warning(f'Erro ao deletar predição #{prediction_name}, {error_msg}')
+    error_msg = 'Predição não encontrada na base :/'
+    logger.warning(f'Erro ao deletar predição #{prediction_name}, {error_msg}')
 
-        return {'mensagem': error_msg}, 404
+    return {'mensagem': error_msg}, 404
