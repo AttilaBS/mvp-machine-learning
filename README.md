@@ -25,7 +25,7 @@
     repositório, ele pode ser acessado diretamente pelo navegador
     através do link:
 
-    #######link colab - fazer um último review e ajustes de código##########
+    https://colab.research.google.com/drive/1D8KKh0ycPaRWDTnp3cCvy4dEIvm8idgg#scrollTo=JAIp6d9w5QG8&uniqifier=1
 
 ## Árvore de módulos. O sistema de pastas e arquivos do projeto está estruturado:
     Projeto
@@ -90,3 +90,8 @@
             o status da API em execução.
         #10 com o back_end em execução, arraste o arquivo index.html
             para o navegador para interagir com o front_end.
+
+## Sobre o banco de dados
+        A aplicação possui um banco de dados populado, mas se quiser, é
+    só deletar o banco de dados de antes de iniciar a aplicação Flask 
+    que um novo banco de dados será criado automaticamente.
