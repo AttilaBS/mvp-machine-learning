@@ -18,7 +18,7 @@
 
 ## Link do vídeo de apresentação:
 
-    https://youtu.be/IWD0Jtts6Og
+    https://youtu.be/mMMLeWZh0wE
 
 ## Link do Colab:
         Além de o colab notebook com o modelo treinado estar presente neste
